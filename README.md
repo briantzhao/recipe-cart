@@ -1,70 +1,27 @@
-# Getting Started with Create React App
+# Recipe Cart
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Project Specification
 
-## Available Scripts
+Recipe Cart was created to help users with the task of storing recipes and compiling a shopping list based on those recipes. It takes all of the notes and scraps of paper that typically go into planning your weekly grocery trip and puts it all into one app.
 
-In the project directory, you can run:
+### Front End
 
-### `npm start`
+On the client side, Recipe Cart takes recipe urls submitted by the user and scrapes information regarding the ingredients and recipes. Through this interface, users can build up a stockpile of recipes that they've found that pique their interest.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Once they've added their recipes of interest, they can compile a shopping list by choosing the recipes they've saved. The interface for compiling a shopping list will be represented by a table of meals for the week. The user will be able to click and drag recipes that they want into the appropriate spot on the table.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+The table can also be gradually populated when submitting urls - the user will be able to specify when they want to cook a submitted recipe via dropdowns, and dropdowns will be dynamically populated based on what meals are already planned, to ensure no overlap.
 
-### `npm test`
+The shopping list page will also provide users with the ability to reuse recipes/ingredients lists from previous weeks through a calendar interface.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+The app will then render the consolidated list of ingredients as a shopping list. They can then mark ingredients off the list, depending on if they already have that ingredient.
 
-### `npm run build`
+### Back End
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+On the server side, Recipe Cart will use a relational database to store several tables. These tables include tables for:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- users
+- recipes
+- recipe ingredients
+- weekly recipes/shopping carts
+  JWT will be used for user authentication.
