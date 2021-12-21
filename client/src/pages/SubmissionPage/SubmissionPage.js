@@ -23,6 +23,7 @@ export default class SubmissionPage extends Component {
     axios
       .post(`${server}/urls`, { url })
       .then(({ data }) => {
+        console.log(data);
         const { ingredients, recipe } = data;
         this.setState({ ingredients, recipe });
       })
