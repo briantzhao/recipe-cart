@@ -1,16 +1,17 @@
 import { Component } from "react";
-import $ from "jquery";
-import URLForm from "../../components/Form/URLForm";
+import URLForm from "../../components/URLForm/URLForm";
 import List from "../../components/List/List";
 import axios from "axios";
-const heroku = "https://cors-anywhere.herokuapp.com/";
+import SaveForm from "../../components/SaveForm/SaveForm";
 const server = "http://localhost:8080";
 
 export default class SubmissionPage extends Component {
+  // TODO: add userID to state
   state = {
-    recipe: "",
+    recipe: null,
     ingredients: null,
     url: "",
+    urlValid: null,
   };
   handleChange = (event) => {
     this.setState({ [event.target.name]: event.target.value });
@@ -25,32 +26,43 @@ export default class SubmissionPage extends Component {
       .then(({ data }) => {
         console.log(data);
         const { ingredients, recipe } = data;
-        this.setState({ ingredients, recipe });
+        this.setState({ ingredients, recipe, urlValid: true });
+        event.target.reset();
       })
       .catch((err) => {
         console.log(err);
+        this.setState({ urlValid: false });
       });
   };
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <URLForm
-            value={this.state.url}
-            handleChange={this.handleChange}
-            handleSubmit={this.handleSubmit}
-          />
-          {this.state.ingredients && (
+      <div className="Submission">
+        <URLForm
+          value={this.state.url}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+        />
+        {this.state.urlValid && (
+          <section className="Submission__recipe-info">
             <List
               title="Ingredients"
               ordered={false}
               list={this.state.ingredients}
             />
-          )}
-          {this.state.recipe && (
             <List title="Recipe" ordered={true} list={this.state.recipe} />
-          )}
-        </header>
+            {/* TODO: pass userID to saveform */}
+            <SaveForm
+              ingredients={this.state.ingredients}
+              recipe={this.state.recipe}
+            />
+          </section>
+        )}
+        {this.state.urlValid === false && (
+          <h1 className="Submission__invalid-url">
+            Recipe not found. Only recipes from Tasty, SeriousEats, and
+            SimplyRecipes are accepted
+          </h1>
+        )}
       </div>
     );
   }
