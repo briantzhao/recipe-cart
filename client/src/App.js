@@ -9,6 +9,7 @@ import LoginPage from "./pages/LoginPage/LoginPage";
 import SignupPage from "./pages/SignupPage/SignupPage";
 
 function App() {
+  //TODO: Add hooks for user and loggedIn, pass to Header
   return (
     <div className="App">
       <Router>

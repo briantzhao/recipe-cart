@@ -29,7 +29,7 @@ export default function Header({ loggedIn, handleLogout, user }) {
           )}
         </ul>
       </nav>
-      {loggedIn ? (
+      {!loggedIn ? (
         <Link to="/login">
           <button className="header__button">Log In</button>
         </Link>
