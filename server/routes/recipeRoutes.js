@@ -1,20 +1,18 @@
 const router = require("express").Router();
 
-router.post("/:id", (req, res) => {
-  //TODO: post recipe to recipe DB
-  //post recipe to mealplan DB if needed
-});
+const {
+  addRecipe,
+  listRecipes,
+  listWeeksRecipes,
+  listPrevRecipes,
+} = require("../controllers/recipeController");
 
-router.get("/:id", (req, res) => {
-  //TODO: get recipes from recipe DB
-});
+router.post("/:id", addRecipe);
 
-router.get("/:id/mealplan", (req, res) => {
-  //TODO: get array of meals planned for the week
-});
+router.get("/:id", listRecipes);
 
-router.get("/:id/past", (req, res) => {
-  //TODO: get array of meals planned for last week
-});
+router.get("/:id/mealplan", listWeeksRecipes);
+
+router.get("/:id/past", listPrevRecipes);
 
 module.exports = router;
