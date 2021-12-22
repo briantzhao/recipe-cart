@@ -1,1 +1,3 @@
-export default function MealPlan({ blocked, day, onClick }) {}
+export default function MealPlan({ blocked, day, onClick }) {
+  return <div className="MealPlan"></div>;
+}
